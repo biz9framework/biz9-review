@@ -1,0 +1,4 @@
+VERSION='0.0.2'
+TITLE='BiZ9-Blank'
+REPO='git@github.com:biz9framework/biz9-blank.git'
+BRANCH='main'
