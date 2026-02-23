@@ -9,6 +9,7 @@ const {Log,Num}=require("biz9-utility");
 const {Data_Logic} = require("/home/think1/www/doqbox/biz9-framework/biz9-data-logic/source");
 class Review_Table {
     static REVIEW = 'review_biz';
+    static USER = 'user_biz';
     static BLANK = 'blank_biz';
 }
 class Review_Field {
@@ -53,6 +54,7 @@ class Review_Logic {
         data.parent_table = Review_Table.BLANK;
         data.user_id = 1;
         data.parent_id = 1;
+        data.title = 'Review Title '+Num.get_id();
         data.rating = Num.get_id(6);
         data.comment = "My comment "+ Review_Logic.get_test_comment();
         return data;
