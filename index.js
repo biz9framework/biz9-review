@@ -7,6 +7,11 @@ Description: BiZ9 Framework: Review
 const {Scriptz}=require("biz9-scriptz");
 const {Log,Num}=require("biz9-utility");
 const {Data_Logic} = require("/home/think1/www/doqbox/biz9-framework/biz9-data-logic/source");
+class Review_Message {
+    static REVIEW_ADD_SUCCESS="Review Add Success.";
+    static REVIEW_REMOVE_SUCCESS="Review Remove Success.";
+    static REVIEW_USER_LOGIN="Please Login To Add Review.";
+}
 class Review_Table {
     static REVIEW = 'review_biz';
     static USER = 'user_biz';
@@ -62,6 +67,7 @@ class Review_Logic {
 }
 module.exports = {
     Review_Field,
+    Review_Message,
     Review_Table,
     Review_Logic
 };
