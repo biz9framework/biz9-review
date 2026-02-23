@@ -7,12 +7,13 @@ Description: BiZ9 Framework: Data - Test
 const async = require('async');
 const assert = require('node:assert');
 const {Log} = require("biz9-utility");
+const {Review_Logic} = require("./index");
 /*
  * availble tests
 - connect
 */
 /* --- TEST CONFIG START --- */
-const APP_ID = 'test-stage-feb17';
+const APP_ID = 'test-stage-feb22';
 /* --- TEST CONFIG END --- */
 
 /* --- DATA CONFIG END --- */
@@ -27,9 +28,9 @@ describe('connect', function(){ this.timeout(25000);
                 //-->
                 let print_test = true;
                 //-->
-                //-- BLANK START --//
-                //let parent = Data_Logic.get(Project_Table.PRODUCT,0,{data:{field_1:'value_'+Num.get_id(),field_2:'value_'+Num.get_id()}});
-                //-- BLANK END --//
+                //let biz_data = Review_Logic.get_test()
+                Log.w('aa',Review_Logic.get_search_filter('aa','bb'));
+
                 //---
                 if(print_test){;
                     Log.w('99_biz_data',biz_data);
