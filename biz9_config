@@ -1,4 +1,4 @@
-VERSION='1.0.11'
+VERSION='1.0.12'
 TITLE='BiZ9-Review'
 REPO='git@github.com:biz9framework/biz9-review.git'
 BRANCH='main'
