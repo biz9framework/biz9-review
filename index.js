@@ -78,7 +78,7 @@ module.exports = {
     Review_Field,
     Review_Message,
     Review_Table,
-    Review_TItle,
+    Review_Title,
     Review_Url,
     Review_Logic
 };
