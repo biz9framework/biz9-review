@@ -4,9 +4,8 @@ Author: Brandon Poole Sr. (biz9framework@gmail.com)
 License GNU General Public License v3.0
 Description: BiZ9 Framework: Review
 */
-const {Scriptz}=require("biz9-scriptz");
 const {Log,Num}=require("biz9-utility");
-const {Data_Logic} = require("/home/think1/www/doqbox/biz9-framework/biz9-data-logic/source");
+const {Data_Logic} = require("biz9-data-logic");
 class Review_Title {
     static REVIEW = 'Review';
 }
