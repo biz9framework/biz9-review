@@ -13,7 +13,7 @@ class Review_Url {
     static DELETE = 'biz9/review/delete';
     static GET = 'biz9/review/get';
     static POST = 'biz9/review/post';
-    static SEARCH = 'biz9/review/search';
+    static PARENT_SEARCH = 'biz9/review/parent_search';
 }
 class Review_Message {
     static ADD_SUCCESS="Review Add Success.";
