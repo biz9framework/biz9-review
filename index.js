@@ -4,7 +4,7 @@ Author: Brandon Poole Sr. (biz9framework@gmail.com)
 License GNU General Public License v3.0
 Description: BiZ9 Framework: Review
 */
-const {Log,Num}=require("biz9-utility");
+const {Log,Num,Response_Field}=require("biz9-utility");
 const {Data_Logic} = require("biz9-data-logic");
 class Review_Title {
     static REVIEW = 'Review';
@@ -15,26 +15,12 @@ class Review_Url {
     static POST = 'biz9/review/post';
     static PARENT_SEARCH = 'biz9/review/parent_search';
 }
-class Review_Response {
-    static POST_CONFIRM = 'post_confirm';
-    static POST_FAIL = 'post_fail';
-    static GET_CONFIRM = 'get_confirm';
-    static GET_FAIL = 'get_fail';
-    static DELETE_CONFIRM = 'delete_confirm';
+class Review_Response_Field {
     static DELETE_FAIL = 'delete_fail';
     static PARENT_SEARCH_CONFIRM = 'parent_search_confirm';
     static PARENT_SEARCH_FAIL = 'parent_search_fail';
-    static PARAM_APP_ID = 'param_app_id';
-    static PARAM_PARENT_TABLE = 'param_parent_table';
-    static PARAM_PARENT_ID = 'param_parent_id';
-    static PARAM_SORT_BY = 'param_sort_by';
-    static PARAM_PAGE_CURRENT = 'param_page_current';
-    static PARAM_PAGE_SIZE = 'param_page_size';
-    static PARAM_USER_ID = 'param_user_id';
     static PARAM_REVIEW = 'param_review';
     static PARAM_REVIEW_ID = 'param_review_id';
-    static PARAM_OPTION = 'param_option';
-
     static RESPONSE_REVIEW = 'response_review';
     static RESPONSE_PARENT = 'response_parent';
     static RESPONSE_PARENT_SEARCH = 'response_parent_search';
@@ -102,28 +88,28 @@ class Review_Logic {
     };
     static get_message_by_response = (response) =>{
         switch(response){
-            case Review_Response.POST_CONFIRM:
+            case Response_Field.POST_CONFIRM:
                 return "Review added successfully.";
                 break;
-            case Review_Response.POST_FAIL:
+            case Response_Field.POST_FAIL:
                 return "Review not added.";
                 break;
-            case Review_Response.GET_CONFIRM:
+            case Response_Field.GET_CONFIRM:
                 return "Review confirm.";
                 break;
-            case Review_Response.GET_FAIL:
+            case Response_Field.GET_FAIL:
                 return "Review fail.";
                 break;
-            case Review_Response.DELETE_CONFIRM:
+            case Response_Field.DELETE_CONFIRM:
                 return "Review delete successful.";
                 break;
-            case Review_Response.DELETE_FAIL:
+            case Response_Field.DELETE_FAIL:
                 return "Review delete fail.";
                 break;
-            case Review_Response.PARENT_SEARCH_CONFIRM:
+            case Review_Response_Field.PARENT_SEARCH_CONFIRM:
                 return "Review parent search successful.";
                 break;
-            case Review_Response.PARENT_SEARCH_FAIL:
+            case Review_Response_Field.PARENT_SEARCH_FAIL:
                 return "Review parent search fail.";
                 break;
             default:
@@ -143,5 +129,5 @@ module.exports = {
     Review_Title,
     Review_Url,
     Review_Logic,
-    Review_Response
+    Review_Response_Field
 };
