@@ -86,7 +86,7 @@ class Review_Logic {
         data.comment = "My comment "+ Review_Logic.get_test_comment();
         return data;
     };
-    static get_message_by_response = (response) =>{
+    static get_message_by_response_field = (response) =>{
         switch(response){
             case Response_Field.POST_CONFIRM:
                 return "Review added successfully.";
