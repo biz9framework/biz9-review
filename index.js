@@ -49,11 +49,12 @@ class Review_Field {
     static PARENT_ID = 'parent_id';
 }
 class Review_Logic {
-    static get = (parent_table,parent_id,user_id,title,comment,rating) =>{
+    static get = (parent_table,parent_id,user_table,user_id,title,comment,rating) =>{
         return Data_Logic.get(Review_Table.REVIEW,0,{data:{
             parent_table:parent_table,
             parent_id:parent_id,
             user_id:user_id,
+            user_table:user_table,
             title:title ? title : "",
             comment:comment ? comment : "",
             rating:rating ? rating : 5
@@ -79,6 +80,7 @@ class Review_Logic {
     static get_test = () =>{
         let data = Data_Logic.get(Review_Table.REVIEW,0);
         data.parent_table = Review_Table.BLANK;
+        data.user_table = Review_Table.USER;
         data.user_id = 1;
         data.parent_id = 1;
         data.title = 'Review Title '+Num.get_id();
