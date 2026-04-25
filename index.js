@@ -9,6 +9,9 @@ const {Data_Logic} = require("biz9-data-logic");
 class Review_Title {
     static REVIEW = 'Review';
 }
+class Review_Stat {
+    static POST_REVIEW="post_review";
+}
 class Review_Url {
     static DELETE = 'biz9/review/delete';
     static GET = 'biz9/review/get';
@@ -126,10 +129,11 @@ class Review_Logic {
 }
 module.exports = {
     Review_Field,
+    Review_Logic,
     Review_Message,
     Review_Table,
     Review_Title,
     Review_Url,
-    Review_Logic,
+    Review_Stat,
     Review_Response_Field
 };
