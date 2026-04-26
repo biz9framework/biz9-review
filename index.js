@@ -50,6 +50,10 @@ class Review_Field {
     static USER_ID = 'user_id';
     static PARENT_TABLE = 'parent_table';
     static PARENT_ID = 'parent_id';
+    // -- review --
+    static REVIEW_RATING_COUNT = 'review_rating_count';
+    static REVIEW_COUNT = 'review_count';
+    static REVIEW_RATING_AVG = 'review_rating_avg';
 }
 class Review_Logic {
     static get = (parent_table,parent_id,user_table,user_id,title,comment,rating) =>{
