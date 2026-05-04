@@ -22,8 +22,16 @@ class Review_Response_Field {
     static DELETE_FAIL = 'delete_fail';
     static PARENT_SEARCH_CONFIRM = 'parent_search_confirm';
     static PARENT_SEARCH_FAIL = 'parent_search_fail';
+
     static PARAM_REVIEW = 'param_review';
     static PARAM_REVIEW_ID = 'param_review_id';
+    static PARAM_USER_TABLE = 'param_user_table';
+    static PARAM_PARENT_TABLE = 'param_parent_table';
+    static PARAM_PARENT_ID = 'param_parent_id';
+    static PARAM_SORT_BY = 'param_sort_by';
+    static PARAM_PAGE_CURRENT = 'param_page_current';
+    static PARAM_PAGE_SIZE = 'param_page_size';
+
     static RESPONSE_REVIEW = 'response_review';
     static RESPONSE_PARENT = 'response_parent';
     static RESPONSE_PARENT_SEARCH = 'response_parent_search';
@@ -50,7 +58,7 @@ class Review_Field {
     static USER_ID = 'user_id';
     static PARENT_TABLE = 'parent_table';
     static PARENT_ID = 'parent_id';
-    // -- review --
+    // -- review-parent --
     static REVIEW_RATING_COUNT = 'review_rating_count';
     static REVIEW_COUNT = 'review_count';
     static REVIEW_RATING_AVG = 'review_rating_avg';
@@ -84,12 +92,22 @@ class Review_Logic {
                 { parent_id: { $regex:String(parent_id), $options: "i" } },
             ] };
     }
-    static get_test = () =>{
+    static get_test = (parent,user) =>{
         let data = Data_Logic.get(Review_Table.REVIEW,0);
-        data.parent_table = Review_Table.BLANK;
-        data.user_table = Review_Table.USER;
-        data.user_id = 1;
-        data.parent_id = 1;
+        if(parent){
+            data.parent_table = parent.table;
+            data.parent_id = parent.id;
+        }else{
+            data.parent_table = Review_Table.BLANK;
+            data.parent_id = 1;
+        }
+         if(user){
+            data.user_table = user.table;
+            data.user_id = user.id;
+        }else{
+            data.user_table = Review_Table.USER;
+            data.user_id = 2;
+        }
         data.title = 'Review Title '+Num.get_id();
         data.rating = Num.get_id(6);
         data.comment = "My comment "+ Review_Logic.get_test_comment();
