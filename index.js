@@ -28,9 +28,9 @@ class Review_Response_Field {
     static PARAM_USER_TABLE = 'param_user_table';
     static PARAM_PARENT_TABLE = 'param_parent_table';
     static PARAM_PARENT_ID = 'param_parent_id';
-    static PARAM_SORT_BY = 'param_sort_by';
-    static PARAM_PAGE_CURRENT = 'param_page_current';
-    static PARAM_PAGE_SIZE = 'param_page_size';
+    static PARAM_USER = 'param_user';
+    static PARAM_PARENT = 'param_parent';
+    static PARAM_SEARCH = 'param_search';
 
     static RESPONSE_REVIEW = 'response_review';
     static RESPONSE_PARENT = 'response_parent';
@@ -39,7 +39,6 @@ class Review_Response_Field {
     static RESPONSE_REVIEW_DELETE = 'response_review_delete';
     static RESPONSE_CACULATE = 'response_caculate';
 }
-
 class Review_Message {
     static ADD_SUCCESS="Review Add Success.";
     static REMOVE_SUCCESS="Review Remove Success.";
@@ -64,12 +63,21 @@ class Review_Field {
     static REVIEW_RATING_AVG = 'review_rating_avg';
 }
 class Review_Logic {
-    static get = (parent_table,parent_id,user_table,user_id,title,comment,rating) =>{
+    static get = (parent,user,title,comment,rating)=>{
+        if(!title){
+            title = 'Review Title '+Num.get_id();
+        }
+        if(!comment){
+            comment = 'Review Comment '+Num.get_id();
+        }
+        if(!rating){
+            rating = Num.get_id(5);
+        }
         return Data_Logic.get(Review_Table.REVIEW,0,{data:{
-            parent_table:parent_table,
-            parent_id:parent_id,
-            user_id:user_id,
-            user_table:user_table,
+            parent_table:parent.table,
+            parent_id:parent.id,
+            user_id:user.id,
+            user_table:user.table,
             title:title ? title : "",
             comment:comment ? comment : "",
             rating:rating ? rating : 5
@@ -147,7 +155,6 @@ class Review_Logic {
                 }
         }
     }
-
 }
 module.exports = {
     Review_Field,
