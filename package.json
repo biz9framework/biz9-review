@@ -1,6 +1,6 @@
 {
   "name": "biz9-review",
-  "version": "1.0.44",
+  "version": "1.0.45",
   "description": "** Description",
   "main": "index.js",
   "scripts": {
@@ -10,9 +10,9 @@
   "license": "MIT",
   "dependencies": {
     "async": "^3.2.6",
-    "biz9-data-logic": "^11.7.44",
+    "biz9-data-logic": "^11.7.64",
     "biz9-scriptz": "^5.8.30",
-    "biz9-utility": "^4.7.57"
+    "biz9-utility": "^4.7.63"
   },
   "repository": {
     "type": "git",
