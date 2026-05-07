@@ -6,6 +6,27 @@ Description: BiZ9 Framework: Review
 */
 const {Log,Num,Response_Field}=require("biz9-utility");
 const {Data_Logic} = require("biz9-data-logic");
+const {Config,Data_Config,Project_Url} = require("./constant");
+const {Service} = require("./service");
+
+class Review_Service {
+    static ping = async (url)  => {
+        const [biz_response,biz_data] = await Service.ping(url);
+        return [biz_response,biz_data];
+    }
+    static post = async (url,review,option) => {
+        const [biz_response,biz_data] = await Service.post(url,review,option);
+        return [biz_response,biz_data];
+    }
+    static parent_search = async (url,user,parent,search,option) => {
+        const [biz_response,biz_data] = await Service.parent_search(url,user,parent,search,option);
+        return [biz_response,biz_data];
+    }
+    static delete = async (url,parent,review_id,option) => {
+        const [biz_response,biz_data] = await Service.delete(url,parent,review_id,option);
+        return [biz_response,biz_data];
+    }
+}
 class Review_Title {
     static REVIEW = 'Review';
 }
@@ -13,6 +34,7 @@ class Review_Stat {
     static POST_REVIEW="post_review";
 }
 class Review_Url {
+    static PING = 'biz9/review/ping';
     static DELETE = 'biz9/review/delete';
     static GET = 'biz9/review/get';
     static POST = 'biz9/review/post';
@@ -164,5 +186,6 @@ module.exports = {
     Review_Title,
     Review_Url,
     Review_Stat,
-    Review_Response_Field
+    Review_Response_Field,
+    Review_Service
 };
