@@ -7,12 +7,11 @@ Description: BiZ9 Framework: Data - Test
 */
 // -- biz9 --
 const {Log,Str,Obj,Response_Logic,Response_Field,Status_Type,Num}=require("/home/think1/www/doqbox/biz9-framework/biz9-utility/source");
-const {Data_Logic,Data_Url,Data_Field,Data_Response_Field}=require("/home/think1/www/doqbox/biz9-framework/biz9-data-app/source");
-const {Config,Data_Config,Table}=require('./constant');
+const {Data_Logic,Data_Url}=require("/home/think1/www/doqbox/biz9-framework/biz9-data-app/source");
 const {Service}=require('./service');
 const {Review_Logic,Review_Table,Review_Field,Review_Response_Field,Review_Url}=require('./');
 const {Remote} = require("/home/think1/www/doqbox/biz9-framework/biz9-remote/source");
-
+const {Config,Data_Config,Table}=require('./constant');
 // -- other --
 const async = require('async');
 var assert = require('better-assert');
@@ -42,7 +41,7 @@ describe('ping', function() {
         async.series([
             async function(call){
                 // -- post-data --
-                const url = Remote.get_url(Config.APP_ID,Config.HOST,Data_Url.PING);
+                const url = Remote.get_url(Config.APP_ID,Config.HOST,Review_Url.PING);
                 const [biz_response,biz_data] = await Service.post(url);
                 response = biz_response;
                 Log.w('BIZ-RESPONSE-PING',response);

@@ -6,7 +6,7 @@ Description: BiZ9 Framework: Review
 */
 const {Log,Num,Obj,Str,Response_Field}=require("/home/think1/www/doqbox/biz9-framework/biz9-utility/source");
 const {Data_Logic} = require("/home/think1/www/doqbox/biz9-framework/biz9-data-app/source");
-const {Config,Data_Config,Url,Table} = require("./constant");
+const {Config,Data_Config,Table} = require("./constant");
 const {Service} = require("./service");
 
 class Review_Service {
