@@ -4,9 +4,9 @@ Author: Brandon Poole Sr. (biz9framework@gmail.com)
 License GNU General Public License v3.0
 Description: BiZ9 Framework: Review
 */
-const {Log,Num,Response_Field}=require("biz9-utility");
-const {Data_Logic} = require("biz9-data-logic");
-const {Config,Data_Config,Project_Url} = require("./constant");
+const {Log,Num,Obj,Str,Response_Field}=require("/home/think1/www/doqbox/biz9-framework/biz9-utility/source");
+const {Data_Logic} = require("/home/think1/www/doqbox/biz9-framework/biz9-data-app/source");
+const {Config,Data_Config,Url,Table} = require("./constant");
 const {Service} = require("./service");
 
 class Review_Service {
@@ -177,6 +177,34 @@ class Review_Logic {
                 }
         }
     }
+    static get_test_user = (option) =>{
+        option = !Obj.check_is_empty(option) ? option : {};
+        let data = Data_Logic.get(Table.USER,0,option);
+        data.username="username_"+ Str.get_id();
+        data.first_name="First Name "+ Str.get_id();
+        data.last_name="Last Name "+ Str.get_id();
+        data.email="email"+ Str.get_id() + "@email.com";
+        data.city="City "+ Str.get_id();
+        data.state= 'New York';
+        data.country= 'USA'
+        data.password="123456789Ab!";
+        return data;
+    };
+    static get_test_cost = () =>{
+        return String(Num.get_id(999)) + "." + String(Num.get_id(99));
+    }
+    static get_test_parent = (option) =>{
+        option = !Obj.check_is_empty(option) ? option : {title:'Product '+Str.get_id(999)};
+        let data = Data_Logic.get(Table.PRODUCT,0,option);
+        data.cost = Review_Logic.get_test_cost();
+        data.old_cost = Review_Logic.get_test_cost();
+        data.category = "Category "+String(Num.get_id());
+        data.type = "Type "+String(Num.get_id());
+        data.sub_type = "Sub Type "+String(Num.get_id());
+        data.stock = String(Num.get_id(3-1));
+        data.tag = "Tag "+ Num.get_id() + ", Tag "+Num.get_id() + ", Tag "+ Num.get_id();
+        return data;
+    };
 }
 module.exports = {
     Review_Field,

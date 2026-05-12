@@ -1,6 +1,6 @@
 // -- biz9 --
-const {Log,Str,Obj,Status_Type,Response_Logic} = require("biz9-utility");
-const {Data_Response_Field} = require("biz9-data-logic");
+const {Log,Str,Obj,Status_Type,Response_Logic} = require("/home/think1/www/doqbox/biz9-framework/biz9-utility/source");
+const {Data_Response_Field} = require("/home/think1/www/doqbox/biz9-framework/biz9-data-app/source");
 const {Review_Response_Field} = require("./");
 const {Remote} = require("/home/think1/www/doqbox/biz9-framework/biz9-remote/source");
 // -- other --
@@ -8,7 +8,7 @@ const {Config} = require("./constant");
 const async = require('async');
 class Service {
     /* - DEFINE -
-     * ping / ()
+     * ping
      * post / (database,review,review,option)
      * parent_search / (database,user,parent,search)
      * delete / (database,parent,review_id)
@@ -28,24 +28,21 @@ class Service {
             let data = {};
             async.series([
                 async function(call){
-                    const form_data = {title:'Biz9-Review-Ping'};
-                    const [biz_response,biz_data] = await Remote.post(url,form_data);
+                    const [biz_response,biz_data] = await Remote.post(url);
                     response = biz_response;
-                    data = biz_data;
                     call();
                 },
                 async function(call){
                     response.messages.push(Response_Logic.get_message(Data_Response_Field.PARAM_URL,Status_Type.OK,url,{title:Config.TITLE}));
-                    response.messages.push(Response_Logic.get_message(Review_Response_Field.PARAM_REVIEW,Status_Type.OK,review,{title:Config.TITLE}));
                     call();
                 },
             ],
                 function(error, result){
-                    callback([response,data]);
+                    callback(response);
                 });
         });
     };
-       // - 9_post_review 9_review_post
+        // - 9_post_review 9_review_post
     static post = (url,review,option) => {
         return new Promise((callback) => {
             let response = Response_Logic.get();
@@ -73,15 +70,19 @@ class Service {
         });
     };
     // - 9_parent_search 9_review_parent_search
-    static parent_search = (url,user,parent,search,option) => {
+    static parent_search = (url,user,parent,option) => {
         return new Promise((callback) => {
+            console.log('34333333');
             let response = Response_Logic.get();
             let data = {};
             option = !Obj.check_is_empty(option) ? option : {};
             async.series([
                 async function(call){
-                    const form_data = {user:user,parent:parent,search:search,option:option};
+                    const form_data = {user:user,parent:parent,option:option};
+                    Log.w('11',form_data);
+                    Log.w('22',url);
                     const [biz_response,biz_data] = await Remote.post(url,form_data);
+                    Log.w('33',biz_data);
                     response = biz_response;
                     data = biz_data;
                     call();
@@ -91,7 +92,6 @@ class Service {
                     response.messages.push(Response_Logic.get_message(Data_Response_Field.PARAM_URL,Status_Type.OK,url,{title:Config.TITLE}));
                     response.messages.push(Response_Logic.get_message(Review_Response_Field.PARAM_USER,Status_Type.OK,user,{title:Config.TITLE}));
                     response.messages.push(Response_Logic.get_message(Review_Response_Field.PARAM_PARENT,Status_Type.OK,parent,{title:Config.TITLE}));
-                    response.messages.push(Response_Logic.get_message(Review_Response_Field.PARAM_SEARCH,Status_Type.OK,search,{title:Config.TITLE}));
                     response.messages.push(Response_Logic.get_message(Data_Response_Field.PARAM_OPTION,Status_Type.OK,option,{title:Config.TITLE}));
                     call();
                 },
@@ -121,33 +121,6 @@ class Service {
                     response.messages.push(Response_Logic.get_message(Data_Response_Field.PARAM_URL,Status_Type.OK,url,{title:Config.TITLE}));
                     response.messages.push(Response_Logic.get_message(Review_Response_Field.PARAM_PARENT,Status_Type.OK,parent,{title:Config.TITLE}));
                     response.messages.push(Response_Logic.get_message(Review_Response_Field.PARAM_REVIEW_ID,Status_Type.OK,review_id,{title:Config.TITLE}));
-                    call();
-                },
-            ],
-                function(error, result){
-                    callback([response,data]);
-                });
-        });
-    };
-    // - 9_parent_search
-    static parent_search = (url,user,parent,search,option) => {
-        return new Promise((callback) => {
-            let response = Response_Logic.get();
-            let data = {};
-            option = !Obj.check_is_empty(option) ? option : {};
-            async.series([
-                async function(call){
-                    const form_data = {user:user,parent:parent,search:search,option:option};
-                    const [biz_response,biz_data] = await Remote.post(url,form_data);
-                    response = biz_response;
-                    data = biz_data;
-                    call();
-                },
-                async function(call){
-                    response.messages.push(Response_Logic.get_message(Data_Response_Field.PARAM_URL,Status_Type.OK,url,{title:Config.TITLE}));
-                    response.messages.push(Response_Logic.get_message(Review_Response_Field.PARAM_USER,Status_Type.OK,user,{title:Config.TITLE}));
-                    response.messages.push(Response_Logic.get_message(Review_Response_Field.PARAM_PARENT,Status_Type.OK,parent,{title:Config.TITLE}));
-                    response.messages.push(Response_Logic.get_message(Review_Response_Field.PARAM_SEARCH,Status_Type.OK,search,{title:Config.TITLE}));
                     call();
                 },
             ],

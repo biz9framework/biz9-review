@@ -5,7 +5,7 @@ License GNU General Public License v3.0
 Description: BiZ9 Framework: Data - Test
 */
 // -- biz9
-const {Data_Url,Data_Logic,Data_Response_Field} = require("/home/think1/www/doqbox/biz9-framework/biz9-data-logic/source");
+const {Data_Url,Data_Logic,Data_Response_Field} = require("/home/think1/www/doqbox/biz9-framework/biz9-data-app/source");
 const {Log,Num,Str,Obj,Status_Type,Response_Field,Response_Logic} = require("/home/think1/www/doqbox/biz9-framework/biz9-utility/source");
 const {Config,Data_Config,Project_Url,Project_Table} = require("./constant");
 const {Remote} = require("/home/think1/www/doqbox/biz9-framework/biz9-remote/source");
@@ -122,7 +122,7 @@ describe('connect', function(){ this.timeout(25000);
         async.series([
             async function(call){
                 // -- POST-START --
-                //post_data = Store_Logic.get_test_product({title:'Product '+Str.get_id()});
+                //post_data = Store_Logic.get_test_parent({title:'Product '+Str.get_id()});
                 post_data.cool = 'bean_' + Num.get_id();
                 const [biz_response,biz_data] = await Data.post(database,post_data.table,post_data,option);
                 Log.w('biz_response',biz_response);
