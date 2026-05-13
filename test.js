@@ -4,13 +4,13 @@ Author: Brandon Poole Sr. (biz9framework@gmail.com)
 License GNU General Public License v3.0
 Description: BiZ9 Framework: Data - Test
 */
-// -- biz9
-const {Data_Url,Data_Logic,Data_Response_Field} = require("/home/think1/www/doqbox/biz9-framework/biz9-data-app/source");
-const {Log,Num,Str,Obj,Status_Type,Response_Field,Response_Logic} = require("/home/think1/www/doqbox/biz9-framework/biz9-utility/source");
-const {Config,Data_Config,Project_Url,Project_Table} = require("./constant");
-const {Remote} = require("/home/think1/www/doqbox/biz9-framework/biz9-remote/source");
+// -- biz9 --
+const {Data_Logic} = require("biz9-data-app");
+const {Log,Num,Str} = require("biz9-utility");
+const {Config,Table} = require("./constant");
+const {Remote} = require("biz9-remote");
 const {Review_Url,Review_Logic,Review_Service} = require("./");
-// -- other
+// -- other --
 const async = require('async');
 /*
  * - DEFINE -

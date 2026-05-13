@@ -6,12 +6,12 @@ License GNU General Public License v3.0
 Description: BiZ9 Framework: Data - Test
 */
 // -- biz9 --
-const {Log,Str,Obj,Response_Logic,Response_Field,Status_Type,Num}=require("/home/think1/www/doqbox/biz9-framework/biz9-utility/source");
-const {Data_Logic,Data_Url}=require("/home/think1/www/doqbox/biz9-framework/biz9-data-app/source");
+const {Log,Str,Response_Logic,Response_Field,Status_Type}=require("biz9-utility");
+const {Data_Logic,Data_Url}=require("biz9-data-app");
 const {Service}=require('./service');
-const {Review_Logic,Review_Table,Review_Field,Review_Response_Field,Review_Url}=require('./');
-const {Remote} = require("/home/think1/www/doqbox/biz9-framework/biz9-remote/source");
-const {Config,Data_Config,Table}=require('./constant');
+const {Review_Logic,Review_Field,Review_Response_Field,Review_Url}=require('./');
+const {Remote} = require("biz9-remote");
+const {Config,Data_Config}=require('./constant');
 // -- other --
 const async = require('async');
 var assert = require('better-assert');
@@ -21,7 +21,7 @@ var assert = require('better-assert');
  * 2. post
  * 3. parent_search
  * 4. delete
- */
+*/
 
 // -- GLOBALZ --
 let USER = Review_Logic.get_test_user();

@@ -4,8 +4,8 @@ Author: Brandon Poole Sr. (biz9framework@gmail.com)
 License GNU General Public License v3.0
 Description: BiZ9 Framework: Review
 */
-const {Log,Num,Obj,Str,Response_Field}=require("/home/think1/www/doqbox/biz9-framework/biz9-utility/source");
-const {Data_Logic} = require("/home/think1/www/doqbox/biz9-framework/biz9-data-app/source");
+const {Log,Num,Obj,Str,Response_Field}=require("biz9-utility");
+const {Data_Logic} = require("biz9-data-app");
 const {Config,Data_Config,Table} = require("./constant");
 const {Service} = require("./service");
 
@@ -191,18 +191,18 @@ class Review_Logic {
         return data;
     };
     static get_test_cost = () =>{
-        return String(Num.get_id(999)) + "." + String(Num.get_id(99));
+        return String(Str.get_id(999)) + "." + String(Str.get_id(99));
     }
     static get_test_parent = (option) =>{
         option = !Obj.check_is_empty(option) ? option : {title:'Product '+Str.get_id(999)};
         let data = Data_Logic.get(Table.PRODUCT,0,option);
         data.cost = Review_Logic.get_test_cost();
         data.old_cost = Review_Logic.get_test_cost();
-        data.category = "Category "+String(Num.get_id());
-        data.type = "Type "+String(Num.get_id());
-        data.sub_type = "Sub Type "+String(Num.get_id());
-        data.stock = String(Num.get_id(3-1));
-        data.tag = "Tag "+ Num.get_id() + ", Tag "+Num.get_id() + ", Tag "+ Num.get_id();
+        data.category = "Category "+String(Str.get_id());
+        data.type = "Type "+String(Str.get_id());
+        data.sub_type = "Sub Type "+String(Str.get_id());
+        data.stock = String(Str.get_id(3-1));
+        data.tag = "Tag "+ Str.get_id() + ", Tag "+Str.get_id() + ", Tag "+ Str.get_id();
         return data;
     };
 }
