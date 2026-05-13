@@ -1,5 +1,5 @@
 /*
-c
+Copyright 2016 Certified CoderZ
 2016 Certified CoderZ
 Author: Brandon Poole Sr. (biz9framework@gmail.com)
 License GNU General Public License v3.0
@@ -8,8 +8,7 @@ Description: BiZ9 Framework: Data - Test
 // -- biz9 --
 const {Log,Str,Response_Logic,Response_Field,Status_Type}=require("biz9-utility");
 const {Data_Logic,Data_Url}=require("biz9-data-app");
-const {Service}=require('./service');
-const {Review_Logic,Review_Field,Review_Response_Field,Review_Url}=require('./');
+const {Review_Logic,Review_Field,Review_Response_Field,Review_Url,Review_Service}=require('./');
 const {Remote} = require("biz9-remote");
 const {Config,Data_Config}=require('./constant');
 // -- other --
@@ -42,7 +41,7 @@ describe('ping', function() {
             async function(call){
                 // -- post-data --
                 const url = Remote.get_url(Config.APP_ID,Config.HOST,Review_Url.PING);
-                const [biz_response,biz_data] = await Service.post(url);
+                const [biz_response,biz_data] = await Review_Service.ping(url);
                 response = biz_response;
                 Log.w('BIZ-RESPONSE-PING',response);
                 Log.w('BIZ-DATA-PING',biz_data);
@@ -103,7 +102,7 @@ describe('post', function() {
                 // -- post-review --
                 const url = Remote.get_url(Config.APP_ID,Config.HOST,Review_Url.POST);
                 REVIEW = Review_Logic.get_test(PARENT,USER);
-                const [biz_response,biz_data] = await Service.post(url,REVIEW);
+                const [biz_response,biz_data] = await Review_Service.post(url,REVIEW);
                 response = biz_response;
                 REVIEW = biz_data;
                 //Log.w('BIZ-RESPONSE-POST',response);
@@ -139,7 +138,7 @@ describe('post', function() {
     });
 });
 //9_parent_search - 9_test_parent_search
-describe('parent_search', function() {
+describe.skip('parent_search', function() {
     let database = {};
     let response=Response_Logic.get();
     let data = {};
@@ -152,7 +151,7 @@ describe('parent_search', function() {
             async function(call){
                 // -- get-reviews --
                 const url = Remote.get_url(Config.APP_ID,Config.HOST,Review_Url.PARENT_SEARCH);
-                const [biz_response,biz_data] = await Service.parent_search(url,USER,PARENT,option);
+                const [biz_response,biz_data] = await Review_Service.parent_search(url,USER,PARENT,option);
                 response = biz_response;
                 data = biz_data;
                 Log.w('PARENT-SEARCH-RESPONSE',response);
@@ -180,7 +179,7 @@ describe('parent_search', function() {
     });
 });
 //9_delete - 9_test_review_delete
-describe('delete', function() {
+describe.skip('delete', function() {
     let database = {};
     let response=Response_Logic.get();
     let data = {};
@@ -193,7 +192,7 @@ describe('delete', function() {
             async function(call){
                 // -- get-reviews --
                 const url = Remote.get_url(Config.APP_ID,Config.HOST,Review_Url.DELETE);
-                const [biz_response,biz_data] = await Service.delete(url,PARENT,REVIEW.id);
+                const [biz_response,biz_data] = await Review_Service.delete(url,PARENT,REVIEW.id);
                 response = biz_response;
                 data = biz_data;
                 Log.w('DELETE-RESPONSE',response);

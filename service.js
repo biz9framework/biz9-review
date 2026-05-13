@@ -72,17 +72,13 @@ class Service {
     // - 9_parent_search 9_review_parent_search
     static parent_search = (url,user,parent,option) => {
         return new Promise((callback) => {
-            console.log('34333333');
             let response = Response_Logic.get();
             let data = {};
             option = !Obj.check_is_empty(option) ? option : {};
             async.series([
                 async function(call){
                     const form_data = {user:user,parent:parent,option:option};
-                    Log.w('11',form_data);
-                    Log.w('22',url);
                     const [biz_response,biz_data] = await Remote.post(url,form_data);
-                    Log.w('33',biz_data);
                     response = biz_response;
                     data = biz_data;
                     call();
@@ -110,8 +106,6 @@ class Service {
             async.series([
                 async function(call){
                     const form_data = {parent:parent,review_id:review_id,option:option};
-                    Log.w('11_form_data',form_data);
-                    Log.w('11_review_id',review_id);
                     const [biz_response,biz_data] = await Remote.post(url,form_data);
                     response = biz_response;
                     data = biz_data;
