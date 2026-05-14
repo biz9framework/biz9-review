@@ -138,7 +138,7 @@ describe('post', function() {
     });
 });
 //9_parent_search - 9_test_parent_search
-describe.skip('parent_search', function() {
+describe('parent_search', function() {
     let database = {};
     let response=Response_Logic.get();
     let data = {};
@@ -179,7 +179,7 @@ describe.skip('parent_search', function() {
     });
 });
 //9_delete - 9_test_review_delete
-describe.skip('delete', function() {
+describe('delete', function() {
     let database = {};
     let response=Response_Logic.get();
     let data = {};
