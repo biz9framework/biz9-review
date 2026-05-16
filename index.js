@@ -106,7 +106,7 @@ class Review_Logic {
         }});
     }
     static get_test_comment = () => {
-        return "Review "+String(Num.get_id()) + " Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
+        return "Review "+String(Str.get_id()) + " Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
     }
     static get_user_search_filter = (parent_table,user_id) =>{
         return {
@@ -122,27 +122,6 @@ class Review_Logic {
                 { parent_id: { $regex:String(parent_id), $options: "i" } },
             ] };
     }
-    static get_test = (parent,user) =>{
-        let data = Data_Logic.get(Review_Table.REVIEW,0);
-        if(parent){
-            data.parent_table = parent.table;
-            data.parent_id = parent.id;
-        }else{
-            data.parent_table = Review_Table.BLANK;
-            data.parent_id = 1;
-        }
-         if(user){
-            data.user_table = user.table;
-            data.user_id = user.id;
-        }else{
-            data.user_table = Review_Table.USER;
-            data.user_id = 2;
-        }
-        data.title = 'Review Title '+Num.get_id();
-        data.rating = Num.get_id(6);
-        data.comment = "My comment "+ Review_Logic.get_test_comment();
-        return data;
-    };
     static get_message_by_response_field = (response) =>{
         switch(response){
             case Response_Field.POST_CONFIRM:
@@ -177,34 +156,6 @@ class Review_Logic {
                 }
         }
     }
-    static get_test_user = (option) =>{
-        option = !Obj.check_is_empty(option) ? option : {};
-        let data = Data_Logic.get(Table.USER,0,option);
-        data.username="username_"+ Str.get_id();
-        data.first_name="First Name "+ Str.get_id();
-        data.last_name="Last Name "+ Str.get_id();
-        data.email="email"+ Str.get_id() + "@email.com";
-        data.city="City "+ Str.get_id();
-        data.state= 'New York';
-        data.country= 'USA'
-        data.password="123456789Ab!";
-        return data;
-    };
-    static get_test_cost = () =>{
-        return String(Str.get_id(999)) + "." + String(Str.get_id(99));
-    }
-    static get_test_parent = (option) =>{
-        option = !Obj.check_is_empty(option) ? option : {title:'Product '+Str.get_id(999)};
-        let data = Data_Logic.get(Table.PRODUCT,0,option);
-        data.cost = Review_Logic.get_test_cost();
-        data.old_cost = Review_Logic.get_test_cost();
-        data.category = "Category "+String(Str.get_id());
-        data.type = "Type "+String(Str.get_id());
-        data.sub_type = "Sub Type "+String(Str.get_id());
-        data.stock = String(Str.get_id(3-1));
-        data.tag = "Tag "+ Str.get_id() + ", Tag "+Str.get_id() + ", Tag "+ Str.get_id();
-        return data;
-    };
 }
 module.exports = {
     Review_Field,

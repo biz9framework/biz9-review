@@ -11,6 +11,7 @@ class Table {
     static BLANK = 'blank_biz';
     static PRODUCT = 'product_biz';
     static USER = 'user_biz';
+    static REVIEW = 'review_biz';
 };
 module.exports = {
     Config,

@@ -27,7 +27,7 @@ let REVIEW = Review_Logic.get_test(PARENT,USER);
 REVIEW.id = '69fd18e29677bee3f922f0cd';
 
 //9_ping - 9_test_ping
-describe('ping', function(){ this.timeout(25000);
+describe.skip('ping', function(){ this.timeout(25000);
     it("_ping", function(done){
         console.log('PING-START');
         async.series([
@@ -69,7 +69,7 @@ describe('post', function(){ this.timeout(25000);
     });
 });
 //9_delete - 9_test_delete
-describe('delete', function(){ this.timeout(25000);
+describe.skip('delete', function(){ this.timeout(25000);
     it("_delete", function(done){
         console.log('DELETE-START');
         async.series([

@@ -7,10 +7,10 @@ Description: BiZ9 Framework: Data - Test
 */
 // -- biz9 --
 const {Log,Str,Response_Logic,Response_Field,Status_Type}=require("biz9-utility");
-const {Data_Logic,Data_Url}=require("biz9-data-app");
+const {Data_Logic,Data_Url}=require("/home/think1/www/doqbox/biz9-framework/biz9-data-app/source");
 const {Review_Logic,Review_Field,Review_Response_Field,Review_Url,Review_Service}=require('./');
 const {Remote} = require("biz9-remote");
-const {Config,Data_Config}=require('./constant');
+const {Config,Data_Config,Table}=require('./constant');
 // -- other --
 const async = require('async');
 var assert = require('better-assert');
@@ -23,8 +23,8 @@ var assert = require('better-assert');
 */
 
 // -- GLOBALZ --
-let USER = Review_Logic.get_test_user();
-let PARENT = Review_Logic.get_test_parent();
+let USER = Data_Logic.get(Table.USER,0,{test:true});
+let PARENT = Data_Logic.get(Table.PRODUCT,0,{test:true});
 let REVIEW = {};
 
 //9_ping - 9_test_ping
@@ -101,7 +101,7 @@ describe('post', function() {
             async function(call){
                 // -- post-review --
                 const url = Remote.get_url(Config.APP_ID,Config.HOST,Review_Url.POST);
-                REVIEW = Review_Logic.get_test(PARENT,USER);
+                REVIEW = Data_Logic.get(Table.REVIEW,0,{test:true,parent:PARENT,user:USER});
                 const [biz_response,biz_data] = await Review_Service.post(url,REVIEW);
                 response = biz_response;
                 REVIEW = biz_data;
